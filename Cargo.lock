@@ -9,6 +9,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 name = "background-removal"
 version = "0.1.0"
 dependencies = [
+ "eyre 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "opencv 0.45.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -21,6 +22,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "eyre"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "indenter 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "once_cell 1.4.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "glob"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -28,6 +38,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "gstreamer"
 version = "0.1.0"
+
+[[package]]
+name = "indenter"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "jobserver"
@@ -102,7 +117,9 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [metadata]
 "checksum autocfg 1.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = "cdb031dd78e28731d87d56cc8ffef4a8f36ca26c38fe2de700543e627f8a464a"
 "checksum cc 1.0.59 (registry+https://github.com/rust-lang/crates.io-index)" = "66120af515773fb005778dc07c261bd201ec8ce50bd6e7144c927753fe013381"
+"checksum eyre 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)" = "b0f9683839e579a53258d377fcc0073ca0bf2042ac5e6c60a598069e64403a6d"
 "checksum glob 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "9b919933a397b79c37e33b77bb2aa3dc8eb6e165ad809e58ff75bc7db2e34574"
+"checksum indenter 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "e0bd112d44d9d870a6819eb505d04dd92b5e4d94bb8c304924a0872ae7016fb5"
 "checksum jobserver 0.1.21 (registry+https://github.com/rust-lang/crates.io-index)" = "5c71313ebb9439f74b00d9d2dcec36440beaf57a6aa0623068441dd7cd81a7f2"
 "checksum libc 0.2.76 (registry+https://github.com/rust-lang/crates.io-index)" = "755456fae044e6fa1ebbbd1b3e902ae19e73097ed4ed87bb79934a867c007bc3"
 "checksum num-traits 0.2.12 (registry+https://github.com/rust-lang/crates.io-index)" = "ac267bcc07f48ee5f8935ab0d24f316fb722d7a1292e2913f0cc196b29ffd611"
