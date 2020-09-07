@@ -1,0 +1,10 @@
+version: '3'
+services:
+  cargo:
+    build: .
+    command: cargo test
+    volumes:
+      - .:/app
+    devices:
+      - /dev/video0:/dev/video0
+      - /dev/video1:/dev/video1

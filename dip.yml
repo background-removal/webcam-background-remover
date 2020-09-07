@@ -1,0 +1,15 @@
+version: '1'
+
+interaction:
+  bash:
+    service: cargo
+    command: bash
+    compose_run_options: [no-deps]
+
+  cargo:
+    service: cargo
+    command: cargo
+    compose_run_options: [no-deps]
+
+provision:
+  - dip compose build
