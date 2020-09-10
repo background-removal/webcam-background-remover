@@ -1,2 +1,2 @@
 [workspace]
-members = ["background-removal", "gstreamer"]
+members = ["core-traits", "background-removal-opencv", "gstreamer", "cli-opencv"]

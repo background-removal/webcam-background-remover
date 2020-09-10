@@ -1,0 +1,11 @@
+[package]
+name = "background-removal"
+version = "0.1.0"
+authors = ["Jayson Reis <santosdosreis@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+core-traits = { path = "../core-traits" }
+eyre = "0.6"
+opencv = { version = "0.45" }
