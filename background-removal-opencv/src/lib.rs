@@ -1,13 +1,19 @@
 use core_traits::BackgroundRemover;
 use eyre::Result;
-use opencv::core::{Mat, Vector};
-use opencv::{core, highgui, imgcodecs, imgproc, prelude::*, video, videoio};
+use opencv::core::{Mat, Ptr, Vector};
+use opencv::{imgcodecs, prelude::*, video};
+use std::cell::RefCell;
 
-pub struct OpenCv {}
+pub struct OpenCv {
+    background_subtractor: RefCell<Ptr<dyn BackgroundSubtractorKNN>>,
+}
 
 impl OpenCv {
     pub fn new() -> Result<Self> {
-        Ok(Self {})
+        let background_subtractor = video::create_background_subtractor_knn(500, 400.0, true)?;
+        Ok(Self {
+            background_subtractor: RefCell::new(background_subtractor),
+        })
     }
 }
 
@@ -16,13 +22,12 @@ impl<Ref> BackgroundRemover<Ref> for OpenCv {
     where
         Ref: AsRef<[u8]>,
     {
-        let mut source_matrix = Mat::from_slice_2d(source)?;
+        let source_matrix = Mat::from_slice_2d(source)?;
         let mut output_matrix = Mat::default()?;
 
-        let mut background_extractor =
-            video::create_background_subtractor_knn(500, 400.0, true).unwrap();
-
-        background_extractor.apply(&source_matrix, &mut output_matrix, 0.0);
+        self.background_subtractor
+            .borrow_mut()
+            .apply(&source_matrix, &mut output_matrix, 0.0)?;
 
         let mut output_buffer = Vector::new();
         let parameters = Vector::new();

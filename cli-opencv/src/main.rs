@@ -1,16 +1,14 @@
 use color_eyre::eyre::{ensure, WrapErr};
 use color_eyre::Result;
-use opencv::core::{Vector, CV_8UC1};
 use opencv::highgui::{imshow, wait_key};
 use opencv::imgcodecs;
+use opencv::imgproc::{cvt_color, COLOR_RGB2GRAY};
 use opencv::prelude::*;
 use opencv::types::VectorOfu8;
 use opencv::videoio;
 
 use background_removal::OpenCv;
 use core_traits::BackgroundRemover;
-use opencv::imgcodecs::imdecode;
-use opencv::imgproc::{cvt_color, COLOR_BGR2BGRA, COLOR_RGB2GRAY};
 
 fn main() -> Result<()> {
     color_eyre::install()?;
@@ -26,16 +24,9 @@ fn main() -> Result<()> {
         if !cam.read(&mut raw_frame)? {
             println!("Skipped empty frame");
         }
-        println!("{:?}", raw_frame.size());
-        println!("{}", raw_frame.dims());
-        println!("{:?}", raw_frame.channels());
-        println!("{:#?}", raw_frame);
-
         let mut raw_frame_one_channel = Mat::default()?;
         cvt_color(&raw_frame, &mut raw_frame_one_channel, COLOR_RGB2GRAY, 0)?;
-        println!("{:#?}", raw_frame_one_channel);
 
-        // let decoded_raw_frame = imdecode(&raw_frame, 0)?;
         let decoded_raw_frame = raw_frame_one_channel
             .to_vec_2d()
             .wrap_err("failed to convert raw frame to generic matrix")?;
@@ -45,7 +36,7 @@ fn main() -> Result<()> {
         let encoded_frame = VectorOfu8::from(encoded_frame);
         let decoded_frame = imgcodecs::imdecode(&encoded_frame, 0)?;
         imshow("Original", &raw_frame)?;
-        imshow("Converted", &raw_frame_one_channel)?;
+        imshow("Converted", &decoded_frame)?;
         if wait_key(10)? > 0 {
             break;
         }
