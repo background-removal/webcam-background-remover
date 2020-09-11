@@ -12,7 +12,7 @@ use core_traits::BackgroundRemover;
 
 fn main() -> Result<()> {
     color_eyre::install()?;
-    let opencv = OpenCv::new()?;
+    let mut opencv = OpenCv::new()?;
     let mut cam = videoio::VideoCapture::new(0, videoio::CAP_ANY)?; // 0 is the default camera
     ensure!(
         videoio::VideoCapture::is_opened(&cam)?,
