@@ -25,6 +25,7 @@ fn main() -> Result<()> {
             println!("Skipped empty frame");
         }
         let mut raw_frame_one_channel = Mat::default()?;
+        // TODO: Figure out how to represent a 3 channel image in Rust as Vec<Vec<u8>> has only 1
         cvt_color(&raw_frame, &mut raw_frame_one_channel, COLOR_RGB2GRAY, 0)?;
 
         let decoded_raw_frame = raw_frame_one_channel
