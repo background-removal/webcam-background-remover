@@ -1,9 +1,12 @@
-FROM ubuntu:20.04
+FROM rust:1.46
 
 WORKDIR /app
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteracti apt-get -y install libopencv-dev libclang-dev clang curl && \
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    DEBIAN_FRONTEND=noninteracti apt-get -y install libclang-dev clang curl git zip unzip pkg-config
 
+ENV VCPKG_ROOT /usr/src/vcpkg
+ENV VCPKGRS_DYNAMIC=1
 ENV PATH "/bin:/sbin:/usr/bin:/usr/sbin:/root/.cargo/bin"
+
+RUN bash -exc 'cd /usr/src && git clone https://github.com/microsoft/vcpkg && cd vcpkg && ./bootstrap-vcpkg.sh && ./vcpkg install opencv4[contrib,nonfree] && ./vcpkg list'

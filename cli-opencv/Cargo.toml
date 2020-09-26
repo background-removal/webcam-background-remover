@@ -10,4 +10,4 @@ edition = "2018"
 background-removal = { path = "../background-removal-opencv" }
 color-eyre = "0.5"
 core-traits = { path = "../core-traits" }
-opencv = { version = "0.45", no-default-features = true, features = ["contrib", "buildtime-bindgen", "opencv-4", "clang-runtime"] }
+opencv = { version = "0.45", default-features = false, features = ["contrib", "buildtime-bindgen", "opencv-4", "clang-runtime"] }

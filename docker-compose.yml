@@ -5,6 +5,3 @@ services:
     command: cargo test
     volumes:
       - .:/app
-    devices:
-      - /dev/video0:/dev/video0
-      - /dev/video1:/dev/video1

@@ -8,4 +8,4 @@ edition = "2018"
 [dependencies]
 core-traits = { path = "../core-traits" }
 eyre = "0.6"
-opencv = { version = "0.45" }
+opencv = { version = "0.45", default-features = false, features = ["contrib", "buildtime-bindgen", "opencv-4", "clang-runtime"] }
